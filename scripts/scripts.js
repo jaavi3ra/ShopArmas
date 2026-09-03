@@ -3,7 +3,18 @@ function inyectarFooter(){
 }
 
 function inyectarHeader(){
-    document.getElementById("header").innerHTML = '<section><h1 class="prevent-select">SHOP</h1></section><section><a href="#Catalogo">Catalogo</a><a href="#Categorias">Categorias</a></section><section><p class="prevent-select">Grand Theft  Auto <span>LOGO</span></p></section>';
+    document.getElementById("header").innerHTML = 
+    '<section>'+
+    '<h1 class="prevent-select">GROVE MARKET</h1>'+
+    '</section>'+
+    '<section>'+
+    '<a href="#Catalogo">SHOP</a>'+
+    '<a href="#Categorias">DROPS</a>'+
+    '<a href="#Categorias">ABOUT</a>'+
+    '</section>'+
+    '<section>'+
+    '<p class="prevent-select">YOUR STASH<span class="logo">LOGO</span> <span id="cont-carrito"></span></p>'+
+    '</section>';
 }
 
 inyectarHeader();
@@ -17,27 +28,5 @@ fetch(pagina)
                 document.getElementById("content").innerHTML = data;
 })};
 
-cargarContenido("home.html");
+cargarContenido("paginas/home.html");
 
-//carrito
-   let contador = 0;
-   
-   function agregaritemAlCarrito(boton) {
-        const valor = document.getElementById("cont-carrito");
-        
-        const nombreobjeto = boton.parentElement.querySelector('span').textContent;
-        
-        contador++;
-        
-        valor.innerText = contador; 
-        mensajeSpan(nombreobjeto);   
-}
-
-function mensajeSpan(text) {
-    const mensaje = document.getElementById("mensaje-alerta");
-
-    setTimeout(() => {
-        mensaje.innerText = "Agregaste "+text+" al carrito!.";
-
-    }, 1000);    
-}
