@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos/style.css">
+</head>
+<body>
+    <header id=header">
+    
+    </header>
+
+    <main>
+            <section id="producto-detalle">
+                <article id="producto-imagen">
+                    <img id="imagen-principal" src="" alt="Producto">
+                </article>
+                <article id="producto-informacion">
+                    <h1 id="nombre-producto"> 
+                        Nombre del producto
+                    </h1>
+                    <p id="precio-producto">
+                        $0.00
+                    </p>
+                    <p id="descripcion-producto">
+                        Descripción del producto
+                    </p>
+                    <div id="cantidad-producto">
+                        <label for="cantidad">
+                            Cantidad:
+                        </label>
+                        <input type="number" id="cantidad" min="1" value="1">
+                    </div>
+
+                    <button onclick ="agregarCarrito()">
+                        Agregar al carrito
+                    </button>
+                </article>
+                <section id="productos-relacionados">
+                    <h2>
+                        Productos relacionados
+                    </h2>
+                    <div id="lista-relacionados">
+                        <!-- Aquí se generarán los productos relacionados -->
+                    </div>
+            </section>
+    </main>
+</body>
+</html>

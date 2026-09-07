@@ -1,0 +1,85 @@
+body{
+    font-family: "Ubuntu", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Detalle del producto */
+
+detalle-producto{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 50px;
+}
+
+producto-imagen{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+producto-imagen img{
+    width: 100%;
+    max-width: 500px;
+}
+
+producto-informacion{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+cantidad-producto{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+cantidad{
+    width: 60px;
+}
+
+producto-informacion button{
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+/* productos relacionados */
+
+productos-relacionados{
+    padding: 40px;
+}
+
+lista-relacionados{
+    text-align: center;
+}
+
+lista-relacionados{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* responsive */
+
+@media(max-width: 600px){
+
+    detalle-producto{
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    producto-imagen{
+        width: 100%;
+    }
+
+    producto-informacion{
+        width: 90%;
+    }
+}
