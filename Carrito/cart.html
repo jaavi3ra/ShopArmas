@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+
+    <link rel="stylesheet" href="../estilos/style.css">
+    <link rel="stylesheet" href="./cart.css">
+</head>
+
+<body>
+    <header id="header"></header>
+
+    <main class="detalle-producto">
+        <!-- Ruta de navegacion del producto actual. -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a> &gt;
+            <a href="../index.html#Catalogo">Catalogo</a> &gt;
+            <span id="breadcrumbProducto"></span>
+        </nav>
+
+        <!-- Imagen principal y miniaturas del producto. -->
+        <section class="producto">
+            <div class="producto-imagenes">
+                <img id="imagenProducto" alt="producto">
+
+                <div class="miniaturas">
+                    <img src="" alt="miniatura 1">
+                    <img src="" alt="miniatura 2">
+                    <img src="" alt="miniatura 3">
+                </div>
+            </div>
+
+            <!-- Informacion y acciones del producto seleccionado. -->
+            <div class="producto-info">
+                <div class="producto-titulo">
+                    <h1 id="nombreProducto"></h1>
+                    <h2 id="precioProducto"></h2>
+                </div>
+
+                <p id="descripcionProducto"></p>
+
+                <label for="cantidadProducto">Cantidad</label>
+                <select id="cantidadProducto">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+                <button>Agregar al carrito</button>
+                <button>Comprar ahora</button>
+            </div>
+        </section>
+
+        <section class="productos-relacionados">
+            <h3>Productos relacionados</h3>
+
+            <div class="relacionados-lista" id="productosRelacionados"></div>
+        </section>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script src="../scripts/scripts.js"></script>
+    <script src="./cart.js"></script>
+</body>
+
+</html>
