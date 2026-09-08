@@ -22,11 +22,22 @@ inyectarFooter();
 
 //
 function cargarContenido(pagina) {
-fetch(pagina)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("content").innerHTML = data;
-})};
 
-cargarContenido("paginas/home.html");
+    fetch(pagina)
 
+        .then(response => response.text())
+
+        .then(data => {
+
+            document.getElementById("content").innerHTML = data;
+
+            let script = document.createElement("script");
+
+            script.src = "scripts/script-cart.js";
+
+            document.body.appendChild(script);
+
+        });
+}
+
+cargarContenido("paginas/cart.html");
