@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito</title>
+    <title>Producto</title>
 
     <link rel="stylesheet" href="../estilos/style.css">
-    <link rel="stylesheet" href="./cart.css">
+    <link rel="stylesheet" href="./product.css">
 </head>
 
 <body>
@@ -24,12 +24,17 @@
         <!-- Imagen principal y miniaturas del producto. -->
         <section class="producto">
             <div class="producto-imagenes">
-                <img id="imagenProducto" alt="producto">
+                <div class="slider-imagen">
+                    <button class="flecha flecha-izquierda" onclick="anterior()" aria-label="Imagen anterior"></button>
+
+                    <img id="imagenProducto" alt="producto">
+
+                    <button class="flecha flecha-derecha" onclick="siguiente()" aria-label="Imagen siguiente"></button>
+                </div>
 
                 <div class="miniaturas">
-                    <img src="" alt="miniatura 1">
-                    <img src="" alt="miniatura 2">
-                    <img src="" alt="miniatura 3">
+                    <img src="../assets-img/Pistola.jpg" alt="Pistola principal" onclick="mostrarImagenPorIndice(0)">
+                    <img src="../assets-img/pistola2.jpg" alt="Pistola secundaria" onclick="mostrarImagenPorIndice(1)">
                 </div>
             </div>
 
@@ -37,10 +42,16 @@
             <div class="producto-info">
                 <div class="producto-titulo">
                     <h1 id="nombreProducto"></h1>
-                    <h2 id="precioProducto"></h2>
+                    <div class="producto-precio">
+                        <h2 id="precioProducto"></h2>
+                        <span id="rpProducto"></span>
+                    </div>
                 </div>
 
                 <p id="descripcionProducto"></p>
+
+                <!-- Estadisticas del producto seleccionado. -->
+                <div class="weapon-stats" id="estadisticasProducto"></div>
 
                 <label for="cantidadProducto">Cantidad</label>
                 <select id="cantidadProducto">
@@ -66,7 +77,7 @@
     <footer id="footer"></footer>
 
     <script src="../scripts/scripts.js"></script>
-    <script src="./cart.js"></script>
+    <script src="./product.js"></script>
 </body>
 
 </html>

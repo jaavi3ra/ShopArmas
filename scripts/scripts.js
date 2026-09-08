@@ -13,7 +13,7 @@ function inyectarHeader() {
         '<a href="#Categorias">ABOUT</a>' +
         '</section>' +
         '<section>' +
-        '<p class="prevent-select">YOUR STASH<span class="logo">LOGO</span> <span id="cont-carrito"></span></p>' +
+        '<p class="prevent-select">YOUR STASH  🛒 <span id="cont-carrito"></span></p>' +
         '</section>';
 }
 
@@ -22,11 +22,19 @@ inyectarFooter();
 
 // Carga el contenido del home dentro del contenedor principal.
 function cargarContenido(pagina) {
+    const content = document.getElementById("content");
+
+    if (!content) {
+        return;
+    }
+
     fetch(pagina)
         .then(response => response.text())
         .then(data => {
-            document.getElementById("content").innerHTML = data;
+            content.innerHTML = data;
         });
 }
 
-cargarContenido("paginas/home.html");
+if (document.getElementById("content")) {
+    cargarContenido("paginas/home-content.html");
+}
