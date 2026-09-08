@@ -1,3 +1,44 @@
+/* mensale alerta */
+.mensaje-alerta-container {
+    display: none;
+
+    position: fixed;
+    top: 90px;
+    right: 25px;
+    z-index: 1000;
+
+    padding: 15px 22px;
+
+    background:
+        linear-gradient(#15151c, #15151c) padding-box,
+        linear-gradient(
+            135deg,
+            #ff7a18,
+            #ff3cac,
+            #8a2be2
+        ) border-box;
+
+    border: 2px solid transparent;
+    border-radius: 8px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+    animation: aparecerMensaje 0.3s ease;
+}
+
+@keyframes aparecerMensaje {
+
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 /* styles for content HOME.HTML */
 
 .caluga {
@@ -8,7 +49,18 @@
 .caluga:hover {
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
+    border: 2px solid transparent;
+
+
+    background:
+        linear-gradient(#15151c, #15151c) padding-box,
+        linear-gradient(
+            135deg,
+            #ff7a18,
+            #ff3cac,
+            #8a2be2
+        ) border-box;
+  }
 .product-card {
   position: relative;
   overflow: hidden;
@@ -179,26 +231,37 @@ div.contenedor  > div {
     flex-direction: column;
   }
 }
-
+/* filtro div*/
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   width: 200px;
-  background-color: #f1f1f1;
+  background: rgba(21, 21, 28, .74);
 }
 
 li a {
   display: block;
-  color: black;
+  color: inherit;
   padding: 8px 16px;
   text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
 }
 
 /* Change the link and background color on hover */
 li a:hover {
   background-color: #555555;
   color: white;
+}
+
+.shop-section{
+    position: sticky;
+    top: 105px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border: 1px solid var(--border);
+    background: rgba(21, 21, 28, .74);
 }
 
 /* edit imagen*/

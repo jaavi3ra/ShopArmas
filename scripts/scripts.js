@@ -5,15 +5,25 @@ function inyectarFooter(){
 function inyectarHeader(){
     document.getElementById("header").innerHTML = 
     '<section>'+
-    '<h1 class="prevent-select">GROVE MARKET</h1>'+
+    '<a class="brand" href="index.html">GROVE MARKET</a>'+
     '</section>'+
-    '<section>'+
-    '<a href="#Catalogo">SHOP</a>'+
-    '<a href="#Categorias">DROPS</a>'+
-    '<a href="#Categorias">ABOUT</a>'+
+    '<section class="main-nav">'+
+    '<a class="active" href="index.html">SHOP</a>'+
+    '<a href="#DROPS">DROPS</a>'+
+    '<a href="#ABOUT">ABOUT</a>'+
     '</section>'+
+    '<div class="header-actions">'+
+      '<div class="balance-box">'+
+        '<span class="balance-label">SALDO</span>'+
+        '<strong id="balance">$0</strong>'+
+      '</div>'+
+    '</div>'+
     '<section>'+
-    '<p class="prevent-select">YOUR STASH<span class="logo">LOGO</span> <span id="cont-carrito"></span></p>'+
+    '<a class="cart-link" href="cart.html" aria-label="Ver carrito">'+
+    '<span class="cart-icon">🛒</span>'+
+    ' <span>YOUR STASH</span>'+
+    '<span class="cart-count" id="cont-carrito"> 0</span>'+
+    '</a>'+
     '</section>';
 }
 
