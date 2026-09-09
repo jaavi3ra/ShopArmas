@@ -1,0 +1,199 @@
+/* estilos para checkout */
+
+#checkout-content{
+    margin: 25px;
+    padding: 20px;
+    color: #f5f5f5;
+}
+
+#checkout-content h2 {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+#contenedor-checkout{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    max-width: 1200px;
+}
+
+/* Datos  */
+
+#datos-compra{
+    flex: 1;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+#datos-compra h3{
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Campos */
+
+.campo-formulario{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+}
+
+.campo-formulario label{
+    font-size: 0.8rem;
+}
+
+.campo-formulario input{
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    box-sizing: border-box;
+}
+
+.campo-formulario input::placeholder{
+    color: #aaa;
+}
+
+/* Opciones */
+
+.opciones{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.opciones label{
+    cursor: pointer;
+}
+
+/* Resumen */
+
+#resumen-checkout{
+    width: 300px;
+    padding: 25px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+#resumen-checkout h3{
+    margin-top: 0;
+}
+
+/* Productos */
+
+.producto-checkout{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 12px 0;
+}
+
+/* Lineas */
+
+#resumen-checkout hr{
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 20px 0;
+}
+
+.linea-checkout {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.total-checkout{
+    font-size: 1.3rem;
+}
+
+/* Confirmar */
+
+#confirmar-compra{
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: #36a04d;
+    box-shadow: 0 5px #1e3d34;
+}
+
+#confirmar-compra:active{
+    box-shadow: 0 2px #1e3d34;
+    transform: translateY(3px);
+}
+
+/* Volver */
+
+#volver-carrito {
+    display:block;
+    margin: 25px auto 0 auto;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: #36a04d;
+}
+
+/* Adaptacion a pantallas pequenas */
+@media(max-width: 800px){
+
+    #contenedor-checkout{
+        flex-direction: column;
+    }
+
+    #datos-compra{
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #resumen-checkout{
+        width: 100%;
+    }
+}
+
+
+/* Adaptacion final del checkout */
+#contenedor-checkout {
+    width: min(100%, 1200px);
+    margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    #checkout-content {
+        margin: 16px;
+        padding: 12px;
+    }
+
+    #contenedor-checkout {
+        flex-direction: column;
+    }
+
+    #datos-compra,
+    #resumen-checkout {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 560px) {
+    .producto-checkout,
+    .linea-checkout {
+        gap: 12px;
+    }
+
+    #volver-carrito {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

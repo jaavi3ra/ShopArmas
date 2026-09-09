@@ -1,0 +1,250 @@
+.detalle-producto {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+/* Muestra la barra de ubicacion*/
+.breadcrumb {
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.producto {
+    display: flex;
+    gap: 40px;
+}
+
+.producto-imagenes {
+    width: 60%;
+}
+
+.producto-imagenes > img {
+    display: block;
+    width: 100%;
+    height: 430px;
+    object-fit: contain;
+    border: 1px solid #222;
+}
+.producto-info {
+    width: 40%;
+}
+
+.weapon-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stat {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+.stat span {
+    color: #b9b4c7;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.stat-bar {
+    height: 7px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #2a2730;
+}
+
+.stat-value {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #ff7a18, #ff3cac, #8f44fd);
+    box-shadow: 0 0 10px rgba(255, 60, 172, 0.4);
+}
+
+.producto-titulo {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+.producto-precio {
+    text-align: right;
+}
+
+.producto-precio h2 {
+    margin: 0;
+}
+
+#rpProducto {
+    display: block;
+    margin-top: 5px;
+    color: #ff7a18;
+    font-size: 0.85rem;
+}
+
+.producto-info p {
+    margin: 25px 0;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+.producto-info select {
+    margin-left: 15px;
+}
+
+.producto-info button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px 15px;
+    color: white;
+    background-color: #36a04d;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px #1e3d34;
+    cursor: pointer;
+}
+
+.producto-info button:hover {
+    background-color: #3eb85a;
+}
+
+.producto-info button:active {
+    box-shadow: 0 2px #1e3d34;
+    transform: translateY(3px);
+}
+
+.productos-relacionados {
+    margin-top: 50px;
+    border-top: 1px solid #ccc;
+    padding-top: 25px;
+}
+
+.relacionados-lista {
+    display: flex;
+    gap: 30px;
+}
+
+.relacionados-lista article {
+    width: 160px;
+    border: 1px solid #222;
+}
+
+.relacionados-lista a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.relacionados-lista img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    display: block;
+}
+
+.relacionados-lista h4 {
+    margin: 8px;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+/* Productos relacionados */
+.relacionados-lista a {
+    color: var(--text);
+}
+
+.relacionados-lista h4 {
+    color: var(--text);
+}
+
+.relacionados-lista a:hover h4 {
+    color: var(--orange);
+}
+
+
+
+/* Ruta de navegacion del producto */
+.breadcrumb,
+.breadcrumb a {
+    color: var(--text);
+}
+
+.breadcrumb a {
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--orange);
+}
+
+#breadcrumbProducto {
+    color: var(--orange);
+}
+
+
+/* Adaptacion de producto a pantallas medianas y pequenas */
+@media (max-width: 900px) {
+    .detalle-producto {
+        width: min(100% - 32px, 1100px);
+    }
+
+    .producto {
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .producto-imagenes,
+    .producto-info {
+        width: 100%;
+    }
+
+    .producto-imagenes > img {
+        height: min(430px, 62vw);
+    }
+
+    .productos-relacionados {
+        margin-top: 36px;
+    }
+
+    .relacionados-lista {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 560px) {
+    .detalle-producto {
+        width: min(100% - 22px, 1100px);
+        margin: 20px auto;
+    }
+
+    .producto-titulo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .producto-precio {
+        text-align: left;
+    }
+
+    .producto-imagenes > img {
+        height: 300px;
+    }
+
+    .stat {
+        grid-template-columns: 76px minmax(0, 1fr);
+    }
+
+    .relacionados-lista article {
+        width: calc(50% - 15px);
+        min-width: 130px;
+    }
+}
