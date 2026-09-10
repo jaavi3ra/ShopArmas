@@ -4,7 +4,6 @@ html,
 body {
     margin: 0;
     min-height: 100%;
-    background: #08080c;
 }
 
 body {
@@ -151,6 +150,34 @@ body {
     transform: translateY(3px);
 }
 
+.admin-form-acciones {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.admin-form-acciones button {
+    grid-column: auto;
+    width: 100%;
+}
+
+.admin-form-acciones #cancelarEdicion {
+    color: white;
+    background: #101016;
+    border: 1px solid var(--border, rgba(255, 255, 255, .11));
+    box-shadow: 0 5px #050509;
+}
+
+.admin-form-acciones #cancelarEdicion:hover {
+    background: rgba(255, 255, 255, .08);
+}
+
+.admin-form-acciones #cancelarEdicion:active {
+    box-shadow: 0 2px #050509;
+    transform: translateY(3px);
+}
+
 .admin-contenido .product-badge,
 .admin-contenido .favorite-btn,
 .admin-contenido .btn-agregar-item {
@@ -245,4 +272,18 @@ body {
 
 .btn-eliminar-producto:hover {
     background: #8b2d2d !important;
+}
+
+.admin-contenido .product-image {
+    height: 230px;
+    overflow: hidden;
+}
+
+.admin-contenido .product-image img {
+    display: block;
+    width: 92%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }

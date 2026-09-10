@@ -98,114 +98,80 @@
                 <div id="admin-product-grid" class="product-grid"></div>
             </div>
         </section>
-        //Editar producto
+        <!-- Editar producto -->
         <section class="admin-vista admin-vista-editar" hidden>
-            
-    <div class="section-heading">
-        <div>
-            <span class="eyebrow">EDITOR</span>
-            <h2>Editar producto</h2>
-        </div>
-    </div>
-
-    <form id="formEditarProducto" class="admin-formulario">
-
-        <input type="hidden" id="editarId">
-
-        <div class="admin-form-columna">
-
-            <div class="admin-campo">
-                <label for="editarNombre">Nombre del arma</label>
-                <input id="editarNombre" type="text" required>
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">EDITOR</span>
+                    <h2>Editar producto</h2>
+                </div>
             </div>
 
-            <div class="admin-campo">
-                <label for="editarDano">Dano</label>
-                <input id="editarDano"
-                       type="number"
-                       min="0"
-                       max="100"
-                       required>
-            </div>
+            <form id="formEditarProducto" class="admin-formulario">
+                <input type="hidden" id="editarId">
 
-        </div>
+                <div class="admin-form-columna">
+                    <div class="admin-campo">
+                        <label for="editarNombre">Nombre del arma</label>
+                        <input id="editarNombre" type="text" placeholder="Ej: AK-47" required>
+                    </div>
 
-        <div class="admin-form-columna">
+                    <div class="admin-campo">
+                        <label for="editarCategoria">Categoria</label>
+                        <select id="editarCategoria" required>
+                            <option value="">Seleccionar categoria</option>
+                            <option value="Pistola">Pistola</option>
+                            <option value="Subfusil">Subfusil</option>
+                            <option value="Rifle">Rifle</option>
+                            <option value="Escopeta">Escopeta</option>
+                            <option value="Cuerpo a cuerpo">Cuerpo a cuerpo</option>
+                            <option value="Municion">Municion</option>
+                        </select>
+                    </div>
 
-            <div class="admin-campo">
-                <label for="editarCategoria">Categoria</label>
+                    <div class="admin-campo">
+                        <label for="editarPrecio">Precio</label>
+                        <input id="editarPrecio" type="number" min="0" placeholder="Ej: 15000" required>
+                    </div>
 
-                <select id="editarCategoria" required>
-                    <option value="">Seleccionar categoria</option>
-                    <option value="Pistola">Pistola</option>
-                    <option value="Subfusil">Subfusil</option>
-                    <option value="Rifle">Rifle</option>
-                    <option value="Escopeta">Escopeta</option>
-                    <option value="Cuerpo a cuerpo">Cuerpo a cuerpo</option>
-                    <option value="Municion">Municion</option>
-                </select>
+                    <div class="admin-campo">
+                        <label for="editarImagen">Link de imagen</label>
+                        <input id="editarImagen" type="url" placeholder="https://ejemplo.com/arma.png">
+                    </div>
+                </div>
 
-            </div>
+                <div class="admin-form-columna">
+                    <div class="admin-campo">
+                        <label for="editarDano">Dano</label>
+                        <input id="editarDano" type="number" min="0" max="100" placeholder="0 a 100" required>
+                    </div>
 
-            <div class="admin-campo">
-                <label for="editarPrecision">Precision</label>
-                <input id="editarPrecision"
-                       type="number"
-                       min="0"
-                       max="100"
-                       required>
-            </div>
+                    <div class="admin-campo">
+                        <label for="editarPrecision">Precision</label>
+                        <input id="editarPrecision" type="number" min="0" max="100" placeholder="0 a 100" required>
+                    </div>
 
-        </div>
+                    <div class="admin-campo">
+                        <label for="editarAlcance">Alcance</label>
+                        <input id="editarAlcance" type="number" min="0" max="100" placeholder="0 a 100" required>
+                    </div>
 
-        <div class="admin-form-columna">
+                    <div class="admin-campo">
+                        <label for="editarRp">RP</label>
+                        <input id="editarRp" type="number" min="0" placeholder="Ej: 150">
+                    </div>
+                </div>
 
-            <div class="admin-campo">
-                <label for="editarPrecio">Precio</label>
-                <input id="editarPrecio"
-                       type="number"
-                       min="0"
-                       required>
-            </div>
-
-            <div class="admin-campo">
-                <label for="editarImagen">Link de imagen</label>
-                <input id="editarImagen"
-                       type="url"
-                       required>
-            </div>
-
-            <div class="admin-campo">
-                <label for="editarRp">RP</label>
-                <input id="editarRp"
-                       type="number"
-                       min="0">
-            </div>
-
-            <div class="admin-campo">
-                <label for="editarAlcance">Alcance</label>
-                <input id="editarAlcance"
-                       type="number"
-                       min="0"
-                       max="100"
-                       required>
-            </div>
-
-        </div>
-
-        <button type="submit">
-            GUARDAR CAMBIOS
-        </button>
-
-    </form>
-
-    <button type="button" id="cancelarEdicion">
-        CANCELAR
-    </button>
-
-</section>
+                <div class="admin-form-acciones">
+                    <button type="submit">GUARDAR CAMBIOS</button>
+                    <button type="button" id="cancelarEdicion">CANCELAR</button>
+                </div>
+            </form>
+        </section>
     </main>
 </section>
 
 <script src="../scripts/scripts-home.js"></script>
 <script src="../scripts/admin.js"></script>
+
+
