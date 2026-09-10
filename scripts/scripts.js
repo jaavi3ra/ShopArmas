@@ -104,31 +104,58 @@ function cargarAdmin(actualizarRuta = true) {
     if (actualizarRuta) cambiarRuta("?page=admin");
     cargarContenido("paginas/admin.html", "admin");
 }
+
+//********************************************** */
+/// iniciar eventos de los botones del header
+//********************************************** */
+
 function iniciarEventosHeader() {
     const btnHome = document.getElementById("btn-home");
     const btnShop = document.getElementById("btn-shop");
     const btnCarrito = document.getElementById("btn-carrito");
     const btnLogin = document.getElementById("btn-login");
 
+    //home
     btnHome.addEventListener("click", function(event) {
         event.preventDefault();
         cargarHome();
     });
-
+      //home desde shop
     btnShop.addEventListener("click", function(event) {
         event.preventDefault();
         cargarHome();
     });
-
+//carrito
     btnCarrito.addEventListener("click", function(event) {
         event.preventDefault();
         cargarCarrito();
     });
+//login
+ if(btnLogin){
+     btnLogin.addEventListener("click",function(event) {
 
-    btnLogin.addEventListener("click", function(event) {
-        event.preventDefault();
-        cargarLogin();
-    });
+       event.preventDefault();
+        const usuario = JSON.parse(  localStorage.getItem( "usuarioActual" ) );
+
+ // NO HAY SESIÓN
+        if (!usuario) {
+            cargarLogin();
+            return;
+        }
+
+// ES ADMINISTRADOR
+        if (usuario.rol === "admin") {
+            cargarAdmin();
+            return;
+         }
+ // USUARIO NORMAL
+        console.log( "Usuario normal:", usuario.nombre );
+
+    }
+    );
+}
+ 
+    
 }
 
 function cargarPaginaInicial() {
@@ -153,6 +180,24 @@ function cargarPaginaInicial() {
     cargarHome(false);
 }
 
+function cargarAdmin() {
+
+    const usuario = JSON.parse(
+        localStorage.getItem("usuarioActual")
+    );
+
+    // Protección básica
+    if (!usuario || usuario.rol !== "admin") {
+        console.log("Acceso no autorizado");
+        cargarHome();
+        return;
+    }
+
+    cargarContenido(
+        "paginas/admin.html",
+        "admin"
+    );
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     inyectarHeader();
@@ -171,18 +216,26 @@ function actualizarHeaderUsuario() {
         return;
     }
 
-    const usuario = JSON.parse(
-        localStorage.getItem("usuarioActual")
-    );
+    const usuario = JSON.parse( localStorage.getItem("usuarioActual") );
+   
+    // SIN SESIÓN
+    if (!usuario) {
 
+        btnLogin.innerText = "INICIAR SESIÓN";
+        return;
+    }
+
+    // ADMIN
+    if (usuario.rol === "admin") {
+        btnLogin.innerText = "ADMINISTRADOR";
+        return;
+    }
+
+    // USUARIO
     if (usuario) {
 
         btnLogin.innerText =
             "👤 " + usuario.nombre.toUpperCase();
 
-    } else {
-
-        btnLogin.innerText =
-            "INICIAR SESIÓN";
-    }
+    } 
 }

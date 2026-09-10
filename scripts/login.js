@@ -1,3 +1,4 @@
+
 const ADMIN_EMAIL = "admin@grovemarket.com";
 const ADMIN_PASSWORD = "Grove1234";
 
@@ -464,10 +465,7 @@ function iniciarLogin() {
 
             if (tipoUsuario === "admin") {
 
-                if (
-                    password !==
-                    ADMIN_PASSWORD
-                ) {
+                if ( password !==  ADMIN_PASSWORD ) {
 
                     mostrarMensajeLogin(
                         "Contraseña incorrecta.",
@@ -479,16 +477,9 @@ function iniciarLogin() {
 
 
                 guardarSesion({
-
-                    nombre:
-                        "Administrador",
-
-                    email:
-                        ADMIN_EMAIL,
-
-                    rol:
-                        "admin"
-
+                    nombre: "Administrador",
+                    email: ADMIN_EMAIL,
+                    rol: "admin"
                 });
 
 
@@ -543,18 +534,10 @@ function iniciarLogin() {
 
 
             guardarSesion({
-
                 id: usuario.id,
-
-                nombre:
-                    usuario.nombre,
-
-                email:
-                    usuario.email,
-
-                rol:
-                    "usuario"
-
+                nombre: usuario.nombre,
+                email: usuario.email,
+                rol: "usuario"
             });
 
 
