@@ -1,0 +1,45 @@
+<main class="detalle-producto">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="#" onclick="cargarHome()">Home</a> &gt;
+        <a href="#" onclick="cargarHome()">Catalogo</a> &gt;
+        <span id="breadcrumbProducto"></span>
+    </nav>
+
+    <section class="producto">
+        <div class="producto-imagenes">
+            <img id="imagenProducto" alt="producto">
+        </div>
+
+        <div class="producto-info">
+            <div class="producto-titulo">
+                <h1 id="nombreProducto"></h1>
+                <div class="producto-precio">
+                    <h2 id="precioProducto"></h2>
+                    <span id="rpProducto"></span>
+                </div>
+            </div>
+
+            <p id="descripcionProducto"></p>
+            <div class="weapon-stats" id="estadisticasProducto"></div>
+
+            <label for="cantidadProducto">Cantidad</label>
+            <select id="cantidadProducto">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
+            <button onclick="agregarProductoDetalleAlCarrito()">Agregar al carrito</button>
+            <button onclick="comprarProductoDetalle()">Comprar ahora</button>
+        </div>
+    </section>
+
+    <section class="productos-relacionados">
+        <h3>Productos relacionados</h3>
+        <div class="relacionados-lista" id="productosRelacionados"></div>
+    </section>
+</main>
+
+

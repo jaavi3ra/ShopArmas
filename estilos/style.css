@@ -1,8 +1,51 @@
-body{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+:root {
+  --bg: #08080c;
+  --panel: #15151c;
+  --panel-2: #101016;
+  --text: #f5f5f5;
+  --muted: #9d9aa7;
+  --border: rgba(255,255,255,.11);
+  --orange: #ff7a18;
+  --pink: #ff3cac;
+  --purple: #8a2be2;
+  --green: #36a04d;
+  --danger: #ff4d5d;
 }
+body{
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: "Anton", sans-serif;
+
+    color: #f5f5f5;
+
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(255, 60, 172, 0.15),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 122, 24, 0.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #121018 0%,
+            #0d0c12 45%,
+            #08080c 100%
+        );
+
+    background-attachment: fixed;
+      box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+
 
 header{
     display: flex;
@@ -10,6 +53,17 @@ header{
     justify-content: space-evenly;
     border-bottom: 0.5px solid #dfdfdf;
     flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-height: 78px;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 28px;
+    padding: 14px clamp(18px, 4vw, 64px);
+    border-bottom: 1px solid var(--border);
+    background: rgba(8,8,12,.88);
+    backdrop-filter: blur(16px);
 }
 
 header section:nth-child(2){
@@ -19,24 +73,217 @@ header section:nth-child(2){
 
 header a{
     text-decoration: none;
-    color: #000;
+    color: inherit;
 }
 
 header a:hover{
     color: orange;
 }
 
-header span{
+header span.logo{
     display: none;
 }
 
-header p:hover span {
+header p:hover span.logo {
   display: inline;
 }
 
 footer{
-    background-color: #eceaea;
-    color: #000000;
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    color: #85818e;
     text-align: center;
-    padding: 12px 0;
+    font-size: .74rem;
+}
+button, a { 
+    -webkit-tap-highlight-color: transparent; 
+}
+
+.brand {
+  font-family: Anton, Impact, sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: 1px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.main-nav { 
+    display: flex; 
+    gap: 22px; 
+    justify-content: center; 
+}
+.main-nav a {
+  position: relative;
+  text-decoration: none;
+  font-family: Anton, Impact, sans-serif;
+  letter-spacing: .7px;
+  color: #dddbe3;
+}
+.main-nav a:hover, .main-nav a.active { 
+    color: var(--orange); 
+}
+
+.balance-box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 105px;
+    padding: 7px 10px;
+    border-right: 1px solid var(--border);
+}
+.cart-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  font-family: Anton, Impact, sans-serif;
+  letter-spacing: .6px;
+  white-space: nowrap;
+}
+.cart-count {
+  min-width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--pink));
+  font-family: Inter, sans-serif;
+  font-size: .72rem;
+  font-weight: 900;
+}
+.cart-count {
+  min-width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--pink));
+  font-family: Inter, sans-serif;
+
+}
+
+/* Alineacion final del encabezado */
+header {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
+    justify-content: initial;
+    flex-wrap: nowrap;
+}
+
+header > section:first-child {
+    justify-self: start;
+}
+
+header > .main-nav {
+    justify-self: center;
+}
+
+header > .header-actions {
+    justify-self: end;
+    margin-right: 18px;
+}
+
+header > section:last-child {
+    justify-self: end;
+}
+
+.balance-box {
+    min-width: auto;
+    padding: 0 16px 0 0;
+}
+
+/* Correccion del encabezado en una sola fila */
+header {
+    grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
+}
+
+header > .header-actions {
+    display: flex;
+    align-items: center;
+    justify-self: end;
+    gap: 18px;
+    margin-right: 0;
+}
+
+header > section:last-child {
+    justify-self: initial;
+}
+
+/* Encabezado alineado: logo izquierda, menu centro, saldo y carrito derecha */
+header {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
+    align-items: center;
+    justify-content: initial;
+    flex-wrap: nowrap;
+}
+
+header > section:first-child {
+    justify-self: start;
+}
+
+header > .main-nav {
+    justify-self: center;
+}
+
+header > .header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    justify-self: end;
+    gap: 18px;
+    margin-right: 0;
+}
+
+header > .header-actions .balance-box {
+    min-width: auto;
+    padding: 0 16px 0 0;
+}
+
+
+
+
+
+/* Adaptacion del encabezado a pantallas medianas y pequenas */
+@media (max-width: 900px) {
+    header {
+        grid-template-columns: 1fr auto;
+        gap: 12px 18px;
+    }
+
+    header > .main-nav {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: center;
+    }
+
+    header > .header-actions {
+        justify-self: end;
+    }
+}
+
+@media (max-width: 560px) {
+    header {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        padding: 12px 16px;
+    }
+
+    header > section:first-child,
+    header > .main-nav,
+    header > .header-actions {
+        justify-self: center;
+    }
+
+    header > .header-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    header > .header-actions .balance-box {
+        align-items: center;
+        border-right: none;
+        padding-right: 0;
+    }
 }

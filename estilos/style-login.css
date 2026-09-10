@@ -1,0 +1,375 @@
+.auth-page {
+
+    min-height: calc(100vh - 100px);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 50px 20px;
+}
+
+
+.auth-container {
+
+    width: 100%;
+    max-width: 470px;
+
+    padding: 32px;
+
+    border: 2px solid transparent;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            rgba(21, 21, 28, 0.97),
+            rgba(21, 21, 28, 0.97)
+        ) padding-box,
+
+        linear-gradient(
+            135deg,
+            #ff7a18,
+            #ff3cac,
+            #8a2be2
+        ) border-box;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.55);
+}
+
+
+.auth-header {
+
+    margin-bottom: 25px;
+}
+
+
+.auth-header h1 {
+
+    margin:
+        7px 0 5px;
+
+    font-size: 2rem;
+}
+
+
+.auth-header p {
+
+    margin: 0;
+
+    color: #94919d;
+
+    font-family: sans-serif;
+
+    font-size: 14px;
+}
+
+
+.eyebrow {
+
+    color: #ff7a18;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+
+/* LOGIN / REGISTRO */
+
+.auth-tabs {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    margin-bottom: 25px;
+
+    background: #0d0c12;
+
+    border-radius: 7px;
+
+    overflow: hidden;
+}
+
+
+.auth-tab {
+
+    padding: 12px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #888590;
+
+    font-family: "Anton", sans-serif;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.auth-tab:hover {
+
+    color: white;
+}
+
+
+.auth-tab.active {
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff7a18,
+            #ff3cac,
+            #8a2be2
+        );
+}
+
+
+/* FORM */
+
+.auth-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+.auth-form.hidden {
+
+    display: none;
+}
+
+
+.input-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.input-group label {
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    color: #dedde1;
+}
+
+
+.input-group input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 14px;
+
+    border-radius: 6px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    outline: none;
+
+    background: #0d0c12;
+
+    color: white;
+
+    font-family: sans-serif;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+
+.input-group input:focus {
+
+    border-color: #ff7a18;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255, 122, 24, 0.12);
+}
+
+
+.input-group input.input-invalid {
+
+    border-color: #ff3c5f;
+}
+
+
+.input-group input.input-valid {
+
+    border-color: #42c96b;
+}
+
+
+/* PASSWORD */
+
+.password-box {
+
+    position: relative;
+}
+
+
+.password-box input {
+
+    padding-right: 48px;
+}
+
+
+.show-password {
+
+    position: absolute;
+
+    right: 8px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 17px;
+}
+
+
+/* ERRORES */
+
+.input-error {
+
+    min-height: 16px;
+
+    color: #ff5a70;
+
+    font-family: sans-serif;
+
+    font-size: 12px;
+}
+
+
+/* BOTÓN */
+
+.auth-submit {
+
+    margin-top: 5px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff7a18,
+            #ff3cac
+        );
+
+    font-family: "Anton", sans-serif;
+
+    font-size: 16px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.auth-submit:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(255, 60, 172, 0.25);
+}
+
+
+.auth-submit:active {
+
+    transform:
+        translateY(1px);
+}
+
+
+/* MENSAJES */
+
+.auth-message {
+
+    min-height: 20px;
+
+    text-align: center;
+
+    font-family: sans-serif;
+
+    font-size: 13px;
+}
+
+
+.auth-message.success {
+
+    color: #49d477;
+}
+
+
+.auth-message.error {
+
+    color: #ff5a70;
+}
+
+
+@media (max-width: 580px) {
+
+    .auth-page {
+
+        padding: 25px 15px;
+    }
+
+
+    .auth-container {
+
+        padding: 22px;
+    }
+
+
+    .auth-header h1 {
+
+        font-size: 1.7rem;
+    }
+
+}

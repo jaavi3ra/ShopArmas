@@ -1,0 +1,48 @@
+<section id="carrito-content">
+    <h2>TU CARRITO</h2>
+
+    <div id="contenedor-carrito">
+        <section id="lista-carrito">
+            <div class="encabezado-carrito">
+                <span>PRODUCTO</span>
+                <span>PRECIO</span>
+                <span>CANTIDAD</span>
+            </div>
+
+            <div id="productos-carrito">
+                Los productos se agregan con JavaScript
+            </div>
+
+            <button id="seguir-comprando" onclick="cargarHome()">
+                ← SEGUIR COMPRANDO
+            </button>
+        </section>
+
+        <aside id="resumen-carrito">
+            <h3>RESUMEN DEL PEDIDO</h3>
+
+            <div class="linea-resumen">
+                <span>Subtotal</span>
+                <span id="subtotal">$0</span>
+            </div>
+
+            <div class="linea-resumen">
+                <span>Envio</span>
+                <span>$0</span>
+            </div>
+
+            <hr>
+
+            <div class="linea-resumen total">
+                <span>TOTAL</span>
+                <span id="total">$0</span>
+            </div>
+
+            <button id="finalizar-compra" onclick="cargarCheckout()">
+                FINALIZAR COMPRA
+            </button>
+        </aside>
+    </div>
+
+</section>
+

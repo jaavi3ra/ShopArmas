@@ -1,0 +1,93 @@
+<section id="checkout-content">
+    <h2>FINALIZAR COMPRA</h2>
+    <div id="contenedor-checkout">
+        <section id="datos-compra">
+            <h3>DATOS DE ENTREGA</h3>
+            <div class="campo-formulario">
+                <label for="nombre">Nombre Completo</label>
+                <input type="text" id="nombre" placeholder="Ingrese su nombre">
+            </div>
+
+            <div class="campo-formulario">
+                <label for="correo">Correo Electronico</label>
+                <input type="text" id="correo" placeholder="Ingrese su correo">
+            </div>
+
+            <div class="campo-formulario">
+                <label for="telefono">Telefono</label>
+                <input type="text" id="telefono" placeholder="Ingrese su telefono">
+            </div>
+
+            <h3>TIPO DE ENTREGA</h3>
+            <div class="opciones">
+                <label>
+                    <input type="radio" name="entrega" value="despacho" checked>
+                    Despacho a domicilio
+                </label>
+
+                <label>
+                    <input type="radio" name="entrega" value="retiro">
+                    Retiro en tienda
+                </label>
+            </div>
+
+            <div id="datos-despacho">
+                <div class="campo-formulario">
+                    <label for="direccion">Direccion</label>
+                    <input type="text" id="direccion" placeholder="Ingrese su direccion">
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="comuna">Comuna</label>
+                    <input type="text" id="comuna" placeholder="Ingrese su comuna">
+                </div>
+            </div>
+
+            <h3>MEDIO DE PAGO</h3>
+            <div class="opciones">
+                <label>
+                    <input type="radio" name="pago" value="tarjeta" checked>
+                    Tarjeta de credito/debito
+                </label>
+
+                <label>
+                    <input type="radio" name="pago" value="transferencia">
+                    Transferencia bancaria
+                </label>
+            </div>
+        </section>
+
+        <aside id="resumen-checkout">
+            <h3>RESUMEN DE COMPRA</h3>
+
+            <div id="productos-checkout">
+                Productos cargados con JS
+            </div>
+            <hr>
+
+            <div class="linea-checkout">
+                <span>Subtotal</span>
+                <span id="subtotal-checkout">$0</span>
+            </div>
+
+            <div class="linea-checkout">
+                <span>Envio</span>
+                <span id="envio-checkout">$0</span>
+            </div>
+            <hr>
+
+            <div class="linea-checkout total-checkout">
+                <span>TOTAL</span>
+                <span id="total-checkout">$0</span>
+            </div>
+
+            <button id="confirmar-compra" onclick="confirmarCompra()">
+                CONFIRMAR COMPRA
+            </button>
+        </aside>
+    </div>
+
+    <button id="volver-carrito" onclick="cargarCarrito()">
+        ← VOLVER AL CARRITO
+    </button>
+</section>
