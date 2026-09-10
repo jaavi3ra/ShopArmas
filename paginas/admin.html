@@ -1,0 +1,177 @@
+<link rel="stylesheet" href="../estilos/style.css">
+<link rel="stylesheet" href="../estilos/style-home.css">
+<link rel="stylesheet" href="../estilos/admin.css">
+
+<section class="admin">
+    <aside class="admin-sidebar">
+        <div class="admin-logo">
+            <h1>Administrador de contrabando</h1>
+        </div>
+
+        <nav class="admin-menu" aria-label="Menu de administrador">
+            <span class="admin-menu-titulo">Menu</span>
+            <ul>
+                <li><a class="activo" href="#" data-admin-vista="productos">Productos</a></li>
+                <li><a href="#" data-admin-vista="agregar">Agregar producto</a></li>
+                <li><a href="#" data-admin-vista="editar">Editar producto</a></li>
+                <li><a class="admin-logout" href="#" data-admin-logout>Cerrar sesion</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="admin-contenido">
+        <section class="admin-vista admin-vista-agregar admin-maleta" id="adminMaleta" hidden>
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">MALETA</span>
+                    <h2>Agregar arma</h2>
+                </div>
+            </div>
+
+            <form id="formAgregarProducto" class="admin-formulario">
+                <div class="admin-form-columna">
+                    <div class="admin-campo">
+                        <label for="adminNombre">Nombre del arma</label>
+                        <input id="adminNombre" type="text" placeholder="Ej: AK-47" required>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="adminCategoria">Categoria</label>
+                        <select id="adminCategoria" required>
+                            <option value="">Seleccionar categoria</option>
+                            <option value="Pistola">Pistola</option>
+                            <option value="Subfusil">Subfusil</option>
+                            <option value="Rifle">Rifle</option>
+                            <option value="Escopeta">Escopeta</option>
+                            <option value="Cuerpo a cuerpo">Cuerpo a cuerpo</option>
+                            <option value="Municion">Municion</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="adminPrecio">Precio</label>
+                        <input id="adminPrecio" type="number" min="0" placeholder="Ej: 15000" required>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="adminImagen">Link de imagen</label>
+                        <input id="adminImagen" type="url" placeholder="https://ejemplo.com/arma.png">
+                    </div>
+                </div>
+
+                <div class="admin-form-columna">
+                    <div class="admin-campo">
+                        <label for="adminDano">Dano</label>
+                        <input id="adminDano" type="number" min="0" max="100" placeholder="0 a 100" required>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="adminPrecision">Precision</label>
+                        <input id="adminPrecision" type="number" min="0" max="100" placeholder="0 a 100" required>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="adminAlcance">Alcance</label>
+                        <input id="adminAlcance" type="number" min="0" max="100" placeholder="0 a 100" required>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="adminRp">RP</label>
+                        <input id="adminRp" type="number" min="0" placeholder="Ej: 150">
+                    </div>
+                </div>
+
+                <button type="submit">Guardar producto</button>
+            </form>
+        </section>
+
+        <section class="admin-vista admin-vista-productos">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">CATALOGO</span>
+                    <h2>Productos existentes</h2>
+                </div>
+                <span class="stock-note" id="adminStock"></span>
+            </div>
+
+            <div class="caluga">
+                <div id="admin-product-grid" class="product-grid"></div>
+            </div>
+        </section>
+        <!-- Editar producto -->
+        <section class="admin-vista admin-vista-editar" hidden>
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">EDITOR</span>
+                    <h2>Editar producto</h2>
+                </div>
+            </div>
+
+            <form id="formEditarProducto" class="admin-formulario">
+                <input type="hidden" id="editarId">
+
+                <div class="admin-form-columna">
+                    <div class="admin-campo">
+                        <label for="editarNombre">Nombre del arma</label>
+                        <input id="editarNombre" type="text" placeholder="Ej: AK-47" required>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="editarCategoria">Categoria</label>
+                        <select id="editarCategoria" required>
+                            <option value="">Seleccionar categoria</option>
+                            <option value="Pistola">Pistola</option>
+                            <option value="Subfusil">Subfusil</option>
+                            <option value="Rifle">Rifle</option>
+                            <option value="Escopeta">Escopeta</option>
+                            <option value="Cuerpo a cuerpo">Cuerpo a cuerpo</option>
+                            <option value="Municion">Municion</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="editarPrecio">Precio</label>
+                        <input id="editarPrecio" type="number" min="0" placeholder="Ej: 15000" required>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="editarImagen">Link de imagen</label>
+                        <input id="editarImagen" type="url" placeholder="https://ejemplo.com/arma.png">
+                    </div>
+                </div>
+
+                <div class="admin-form-columna">
+                    <div class="admin-campo">
+                        <label for="editarDano">Dano</label>
+                        <input id="editarDano" type="number" min="0" max="100" placeholder="0 a 100" required>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="editarPrecision">Precision</label>
+                        <input id="editarPrecision" type="number" min="0" max="100" placeholder="0 a 100" required>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="editarAlcance">Alcance</label>
+                        <input id="editarAlcance" type="number" min="0" max="100" placeholder="0 a 100" required>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="editarRp">RP</label>
+                        <input id="editarRp" type="number" min="0" placeholder="Ej: 150">
+                    </div>
+                </div>
+
+                <div class="admin-form-acciones">
+                    <button type="submit">GUARDAR CAMBIOS</button>
+                    <button type="button" id="cancelarEdicion">CANCELAR</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</section>
+
+<script src="../scripts/scripts-home.js"></script>
+<script src="../scripts/admin.js"></script>
+
+

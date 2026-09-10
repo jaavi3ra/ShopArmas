@@ -52,6 +52,8 @@ window.productosCatalogo = [
     }
 ];
 
+const SALDO_INICIAL = 100000;
+
 function statRow(label, value) {
     return `
         <div class="stat">
@@ -63,7 +65,7 @@ function statRow(label, value) {
 
 function crearCardProducto(product) {
     return `
-        <article class="product-card" data-category="${product.category}">
+        <article class="product-card" data-category="${product.category}" data-product-id="${product.id}">
             <span class="product-badge">${product.badge}</span>
             <button class="favorite-btn" aria-label="Agregar ${product.name} a favoritos" title="Favorito">♡</button>
             <a class="product-image" href="?page=product&id=${product.id}" data-product-id="${product.id}" aria-label="Ver ${product.name}">
@@ -134,9 +136,38 @@ function guardarCarrito(carrito) {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
+function calcularTotalCarrito() {
+    const carrito = obtenerCarrito();
+
+    return carrito.reduce(function(total, producto) {
+        return total + producto.precio * producto.cantidad;
+    }, 0);
+}
+
+function obtenerSaldoDisponible() {
+    return SALDO_INICIAL - calcularTotalCarrito();
+}
+
+function actualizarSaldo() {
+    const balance = document.getElementById("balance");
+    if (!balance) return;
+
+    const saldo = obtenerSaldoDisponible();
+    balance.innerText = "$" + saldo.toLocaleString("es-CL");
+}
+
+function saldoDisponiblePara(precio) {
+    return obtenerSaldoDisponible() >= precio;
+}
+
 function agregarAlCarrito(idProducto) {
     const producto = window.productosCatalogo.find(item => item.id === idProducto);
     if (!producto) return;
+
+    if (!saldoDisponiblePara(producto.price)) {
+        mensajeSaldoAcabado();
+        return;
+    }
 
     const carrito = obtenerCarrito();
     const productoExistente = carrito.find(item => item.id === producto.id);
@@ -164,20 +195,29 @@ function actualizarContador() {
 
     const totalProductos = obtenerCarrito().reduce((total, item) => total + item.cantidad, 0);
     contadorCarrito.innerText = totalProductos;
+    actualizarSaldo();
 }
 
-function mensajeSpan(text) {
+function mensajeEmergente(texto) {
     const mensaje = document.getElementById("mensaje-alerta");
     const mensajeContainer = document.querySelector(".mensaje-alerta-container");
 
     if (!mensaje || !mensajeContainer) return;
 
-    mensaje.innerText = "Agregaste " + text + " al carrito!";
+    mensaje.innerText = texto;
     mensajeContainer.style.display = "block";
 
     setTimeout(() => {
         mensajeContainer.style.display = "none";
     }, 3000);
+}
+
+function mensajeSpan(text) {
+    mensajeEmergente("Agregaste " + text + " al carrito!");
+}
+
+function mensajeSaldoAcabado() {
+    mensajeEmergente("Saldo acabado");
 }
 
 function filtrarProductos(categoria) {

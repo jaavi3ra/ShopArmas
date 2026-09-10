@@ -22,6 +22,9 @@ function inyectarHeader() {
             '<a href="#DROPS">DROPS</a>' +
             '<a href="#ABOUT">ABOUT</a>' +
             '<a href="#Login" id="btn-login"> ' + textoUsuario + ' </a>' +
+            '<button class="logout-btn" id="btn-logout" aria-label="Cerrar sesión" title="Cerrar sesión">' +
+                     '⎋' +
+            '</button>' +
         '</section>' +
         '<div class="header-actions">' +
             '<div class="balance-box">' +
@@ -34,6 +37,25 @@ function inyectarHeader() {
                 '<span class="cart-count" id="cont-carrito">0</span>' +
             '</a>' +
         '</div>';
+}
+
+function actualizarHeaderActivo(tipoPagina) {
+    const enlaces = document.querySelectorAll(".main-nav a");
+    enlaces.forEach(function(enlace) {
+        enlace.classList.remove("active");
+    });
+
+    const btnShop = document.getElementById("btn-shop");
+    const btnLogin = document.getElementById("btn-login");
+
+    if (tipoPagina === "admin") {
+        if (btnLogin) btnLogin.classList.add("active");
+        return;
+    }
+
+    if (tipoPagina === "home" || tipoPagina === "product") {
+        if (btnShop) btnShop.classList.add("active");
+    }
 }
 
 function cargarContenido(pagina, tipoPagina) {
@@ -57,6 +79,8 @@ function cargarContenido(pagina, tipoPagina) {
             if (tipoPagina === "cart") renderCart();
             if (tipoPagina === "checkout") renderCheckout();
             if (tipoPagina === "login") iniciarAuth();
+            if (tipoPagina === "admin") iniciarAdmin();
+            actualizarHeaderActivo(tipoPagina);
 
         })
         .catch(error => {
@@ -98,32 +122,76 @@ function cargarLogin(actualizarRuta = true) {
     if (actualizarRuta) cambiarRuta("index.html");
     cargarContenido("paginas/login.html", "login");
 }
+
+function cargarAdmin(actualizarRuta = true) {
+    if (actualizarRuta) cambiarRuta("?page=admin");
+    cargarContenido("paginas/admin.html", "admin");
+}
+
+//********************************************** */
+/// iniciar eventos de los botones del header
+//********************************************** */
+
 function iniciarEventosHeader() {
     const btnHome = document.getElementById("btn-home");
     const btnShop = document.getElementById("btn-shop");
     const btnCarrito = document.getElementById("btn-carrito");
     const btnLogin = document.getElementById("btn-login");
+    const btnlogout = document.getElementById("btn-logout");
 
+    //home
     btnHome.addEventListener("click", function(event) {
         event.preventDefault();
         cargarHome();
     });
-
+      //home desde shop
     btnShop.addEventListener("click", function(event) {
         event.preventDefault();
         cargarHome();
     });
-
+//carrito
     btnCarrito.addEventListener("click", function(event) {
         event.preventDefault();
         cargarCarrito();
     });
 
-    btnLogin.addEventListener("click", function(event) {
-        event.preventDefault();
-        cargarLogin();
-    });
-}
+//login
+ if(btnLogin){
+
+     btnLogin.addEventListener("click",function(event) {
+
+       event.preventDefault();
+        const usuario = JSON.parse(  localStorage.getItem( "usuarioActual" ) );
+
+ // NO HAY SESIÓN
+        if (!usuario) {
+            cargarLogin();
+            return;
+        }
+
+// ES ADMINISTRADOR
+        if (usuario.rol === "admin") {
+            cargarAdmin();
+            return;
+         }
+ // USUARIO NORMAL
+    console.log( "Usuario normal:", usuario.nombre );
+
+
+        });
+
+    }    
+
+//cerrar sesion boton
+    if (btnlogout) {
+    btnlogout.addEventListener( "click", function() {
+            cerrarSesion();
+        });
+        
+    }
+}    
+     
+    
 
 function cargarPaginaInicial() {
     const params = new URLSearchParams(window.location.search);
@@ -144,16 +212,83 @@ function cargarPaginaInicial() {
         return;
     }
 
+    if (pagina === "admin") {
+        cargarAdmin(false);
+        return;
+    }
+
     cargarHome(false);
 }
 
+function cargarAdmin() {
+
+    const usuario = JSON.parse(
+        localStorage.getItem("usuarioActual")
+    );
+
+    // Protección básica
+    if (!usuario || usuario.rol !== "admin") {
+        console.log("Acceso no autorizado");
+        cargarHome();
+        return;
+    }
+
+    cargarContenido(
+        "paginas/admin.html",
+        "admin"
+    );
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     inyectarHeader();
     inyectarFooter();
     iniciarEventosHeader();
+    actualizarHeaderUsuario();
     actualizarContador();
     cargarPaginaInicial();
    
 });
 
+function actualizarHeaderUsuario() {
+
+    const btnLogin = document.getElementById("btn-login");
+    const btnLogout = document.getElementById("btn-logout");
+
+    if (!btnLogin) {
+        return;
+    }
+
+    const usuario = JSON.parse( localStorage.getItem("usuarioActual") );
+   
+    // SIN SESIÓN
+    if (!usuario) {
+        btnLogin.innerText = "LOGIN";
+        btnLogout.style.display = "none";
+        return;
+    }
+           
+    // ADMIN
+    if (usuario.rol === "admin") {
+        btnLogin.innerText = "ADMINISTRADOR";
+        return;
+    }
+
+    // USUARIO
+    if (usuario) {
+
+        btnLogin.innerText =
+            "👤 " + usuario.nombre.toUpperCase();
+        btnLogout.style.display = "inline-flex";
+
+    } 
+}
+function cerrarSesion() {
+
+    localStorage.removeItem(
+        "usuarioActual"
+    );
+
+    actualizarHeaderUsuario();
+
+    cargarHome();
+}
