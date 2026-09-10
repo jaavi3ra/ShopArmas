@@ -36,6 +36,25 @@ function inyectarHeader() {
         '</div>';
 }
 
+function actualizarHeaderActivo(tipoPagina) {
+    const enlaces = document.querySelectorAll(".main-nav a");
+    enlaces.forEach(function(enlace) {
+        enlace.classList.remove("active");
+    });
+
+    const btnShop = document.getElementById("btn-shop");
+    const btnLogin = document.getElementById("btn-login");
+
+    if (tipoPagina === "admin") {
+        if (btnLogin) btnLogin.classList.add("active");
+        return;
+    }
+
+    if (tipoPagina === "home" || tipoPagina === "product") {
+        if (btnShop) btnShop.classList.add("active");
+    }
+}
+
 function cargarContenido(pagina, tipoPagina) {
     fetch(pagina)
         .then(response => {
@@ -58,6 +77,7 @@ function cargarContenido(pagina, tipoPagina) {
             if (tipoPagina === "checkout") renderCheckout();
             if (tipoPagina === "login") iniciarAuth();
             if (tipoPagina === "admin") iniciarAdmin();
+            actualizarHeaderActivo(tipoPagina);
 
         })
         .catch(error => {
@@ -174,6 +194,11 @@ function cargarPaginaInicial() {
 
     if (pagina === "checkout") {
         cargarCheckout(false);
+        return;
+    }
+
+    if (pagina === "admin") {
+        cargarAdmin(false);
         return;
     }
 

@@ -45,6 +45,12 @@ function mostrarCarrito() {
 
 function sumarCantidad(indice) {
     const carrito = obtenerCarrito();
+
+    if (!saldoDisponiblePara(carrito[indice].precio)) {
+        mensajeSaldoAcabado();
+        return;
+    }
+
     carrito[indice].cantidad++;
     guardarCarrito(carrito);
     actualizarContador();
