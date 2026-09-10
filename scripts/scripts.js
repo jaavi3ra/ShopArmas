@@ -57,6 +57,7 @@ function cargarContenido(pagina, tipoPagina) {
             if (tipoPagina === "cart") renderCart();
             if (tipoPagina === "checkout") renderCheckout();
             if (tipoPagina === "login") iniciarAuth();
+            if (tipoPagina === "admin") iniciarAdmin();
 
         })
         .catch(error => {
@@ -97,6 +98,11 @@ function cargarCheckout(actualizarRuta = true) {
 function cargarLogin(actualizarRuta = true) {
     if (actualizarRuta) cambiarRuta("index.html");
     cargarContenido("paginas/login.html", "login");
+}
+
+function cargarAdmin(actualizarRuta = true) {
+    if (actualizarRuta) cambiarRuta("?page=admin");
+    cargarContenido("paginas/admin.html", "admin");
 }
 function iniciarEventosHeader() {
     const btnHome = document.getElementById("btn-home");
