@@ -22,6 +22,9 @@ function inyectarHeader() {
             '<a href="#DROPS">DROPS</a>' +
             '<a href="#ABOUT">ABOUT</a>' +
             '<a href="#Login" id="btn-login"> ' + textoUsuario + ' </a>' +
+            '<button class="logout-btn" id="btn-logout" aria-label="Cerrar sesión" title="Cerrar sesión">' +
+                     '⎋' +
+            '</button>' +
         '</section>' +
         '<div class="header-actions">' +
             '<div class="balance-box">' +
@@ -134,6 +137,7 @@ function iniciarEventosHeader() {
     const btnShop = document.getElementById("btn-shop");
     const btnCarrito = document.getElementById("btn-carrito");
     const btnLogin = document.getElementById("btn-login");
+    const btnlogout = document.getElementById("btn-logout");
 
     //home
     btnHome.addEventListener("click", function(event) {
@@ -150,8 +154,10 @@ function iniciarEventosHeader() {
         event.preventDefault();
         cargarCarrito();
     });
+
 //login
  if(btnLogin){
+
      btnLogin.addEventListener("click",function(event) {
 
        event.preventDefault();
@@ -169,14 +175,23 @@ function iniciarEventosHeader() {
             return;
          }
  // USUARIO NORMAL
-        console.log( "Usuario normal:", usuario.nombre );
+    console.log( "Usuario normal:", usuario.nombre );
 
+
+        });
+
+    }    
+
+//cerrar sesion boton
+    if (btnlogout) {
+    btnlogout.addEventListener( "click", function() {
+            cerrarSesion();
+        });
+        
     }
-    );
-}
- 
+}    
+     
     
-}
 
 function cargarPaginaInicial() {
     const params = new URLSearchParams(window.location.search);
@@ -228,6 +243,7 @@ document.addEventListener("DOMContentLoaded", function() {
     inyectarHeader();
     inyectarFooter();
     iniciarEventosHeader();
+    actualizarHeaderUsuario();
     actualizarContador();
     cargarPaginaInicial();
    
@@ -236,6 +252,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function actualizarHeaderUsuario() {
 
     const btnLogin = document.getElementById("btn-login");
+    const btnLogout = document.getElementById("btn-logout");
 
     if (!btnLogin) {
         return;
@@ -245,11 +262,11 @@ function actualizarHeaderUsuario() {
    
     // SIN SESIÓN
     if (!usuario) {
-
-        btnLogin.innerText = "INICIAR SESIÓN";
+        btnLogin.innerText = "LOGIN";
+        btnLogout.style.display = "none";
         return;
     }
-
+           
     // ADMIN
     if (usuario.rol === "admin") {
         btnLogin.innerText = "ADMINISTRADOR";
@@ -261,6 +278,17 @@ function actualizarHeaderUsuario() {
 
         btnLogin.innerText =
             "👤 " + usuario.nombre.toUpperCase();
+        btnLogout.style.display = "inline-flex";
 
     } 
+}
+function cerrarSesion() {
+
+    localStorage.removeItem(
+        "usuarioActual"
+    );
+
+    actualizarHeaderUsuario();
+
+    cargarHome();
 }
