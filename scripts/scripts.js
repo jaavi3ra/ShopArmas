@@ -157,3 +157,26 @@ document.addEventListener("DOMContentLoaded", function() {
    
 });
 
+function actualizarHeaderUsuario() {
+
+    const btnLogin = document.getElementById("btn-login");
+
+    if (!btnLogin) {
+        return;
+    }
+
+    const usuario = JSON.parse(
+        localStorage.getItem("usuarioActual")
+    );
+
+    if (usuario) {
+
+        btnLogin.innerText =
+            "👤 " + usuario.nombre.toUpperCase();
+
+    } else {
+
+        btnLogin.innerText =
+            "INICIAR SESIÓN";
+    }
+}
