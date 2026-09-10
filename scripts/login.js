@@ -504,7 +504,7 @@ function iniciarLogin() {
                 setTimeout(
                     function() {
 
-                        cargarHome();
+                        cargarAdmin();
 
                     },
                     1000
