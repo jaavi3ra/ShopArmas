@@ -36,18 +36,136 @@ function prepararRutasProductos(productos) {
 }
 
 function renderAdmin() {
+
     const grid = document.getElementById("admin-product-grid");
-    if (!grid || !window.productosCatalogo) return;
-
-    const productos = obtenerProductosParaAdmin();
+    if (!grid) return;
+    const productos = obtenerProductosAdmin();
     const productosConRutas = prepararRutasProductos(productos);
-
     grid.innerHTML = productosConRutas.map(crearCardProducto).join("");
-
     const adminStock = document.getElementById("adminStock");
     if (adminStock) {
-        adminStock.textContent = productos.length + " articulos cargados";
+        adminStock.textContent = productos.length + " productos creados por administrador";
     }
+    agregarBotonesAdmin();
+}
+
+function agregarBotonesAdmin() {
+    const grid =document.getElementById("admin-product-grid");
+    const tarjetas =grid.querySelectorAll(".product-card");
+    tarjetas.forEach(function (tarjeta) {
+        const idProducto = tarjeta.dataset.productId;
+        tarjeta.insertAdjacentHTML(
+            "beforeend",
+            `
+            <div class="admin-producto-acciones">
+                <button type="button" class="btn-editar-producto" data-id="${idProducto}">
+                    EDITAR
+                </button>
+                <button type="button" class="btn-eliminar-producto" data-id="${idProducto}">
+                    ELIMINAR
+                </button>
+            </div>
+            `
+        );
+    });
+}
+
+function cargarProductoParaEditar(idProducto) {
+    const productos = obtenerProductosAdmin();
+    const producto = productos.find(function (item) {
+        return item.id === idProducto;
+    });
+    if (!producto) return;
+    document.getElementById("editarId").value =
+        producto.id;
+    document.getElementById("editarNombre").value =
+        producto.name;
+    document.getElementById("editarCategoria").value =
+        producto.category;
+    document.getElementById("editarPrecio").value =
+        producto.price;
+    document.getElementById("editarImagen").value =
+        producto.image;
+    document.getElementById("editarRp").value =
+        producto.rp;
+    document.getElementById("editarDano").value =
+        producto.stats.damage;
+    document.getElementById("editarPrecision").value =
+        producto.stats.accuracy;
+    document.getElementById("editarAlcance").value =
+        producto.stats.range;
+    mostrarVistaAdmin("editar");
+}
+
+function iniciarEventosProductosAdmin() {
+    const grid = document.getElementById("admin-product-grid");
+    if (!grid) return;
+    grid.addEventListener("click", function (event) {
+        const botonEditar = event.target.closest(".btn-editar-producto");
+        if (botonEditar) {
+            cargarProductoParaEditar(
+                botonEditar.dataset.id
+            );
+            return;
+        }
+        const botonEliminar = event.target.closest(".btn-eliminar-producto");
+        if (botonEliminar) {
+            eliminarProducto(botonEliminar.dataset.id);
+        }
+    });
+}
+
+function guardarEdicionProducto(event) {
+    event.preventDefault();
+    const id = document.getElementById("editarId").value;
+    const productos = obtenerProductosAdmin();
+    const indice = productos.findIndex(function (producto) {
+            return producto.id === id;
+        });
+    if (indice === -1) return;
+    productos[indice] = {
+        id: id,
+        name:document.getElementById("editarNombre").value.trim(),
+        category:document.getElementById("editarCategoria").value,
+        price:Number(document.getElementById("editarPrecio").value) || 0,
+        rp:Number(document.getElementById("editarRp").value) || 0,
+        image:document.getElementById("editarImagen").value.trim(),
+        images: [document.getElementById("editarImagen").value.trim()],
+        description:productos[indice].description,
+        stats: {
+            damage:numeroEntreCeroYCien(document.getElementById("editarDano").value),
+            accuracy:numeroEntreCeroYCien(document.getElementById("editarPrecision").value),
+            range:numeroEntreCeroYCien(document.getElementById("editarAlcance").value)
+        },
+        badge: "ADMIN"
+    };
+    guardarProductosAdmin(productos);
+    alert("Producto actualizado correctamente.");
+    document.getElementById("formEditarProducto").reset();
+    renderAdmin();
+    mostrarVistaAdmin("productos");
+}
+
+function iniciarFormularioEdicion() {const formulario = document.getElementById("formEditarProducto");
+    if (!formulario) return;
+    formulario.addEventListener("submit", guardarEdicionProducto);
+    document.getElementById("cancelarEdicion").addEventListener("click", function () {formulario.reset();
+            mostrarVistaAdmin("productos");
+        });
+}
+
+function eliminarProducto(idProducto) {
+    const productos = obtenerProductosAdmin();
+    const producto = productos.find(function (item) {return item.id === idProducto;
+        });
+    if (!producto) return;
+    const confirmar = confirm("¿Deseas eliminar " + producto.name + "?");
+    if (!confirmar) return;
+    const nuevosProductos = productos.filter(function (item) {
+            return item.id !== idProducto;
+        });
+    guardarProductosAdmin(nuevosProductos);
+    renderAdmin();
 }
 
 function mostrarVistaAdmin(nombreVista) {
@@ -149,6 +267,8 @@ function iniciarAdmin() {
     iniciarMenuAdmin();
     iniciarLogoutAdmin();
     iniciarFormularioAdmin();
+    iniciarFormularioEdicion();
+    iniciarEventosProductosAdmin();
     renderAdmin();
     mostrarVistaAdmin("productos");
 }

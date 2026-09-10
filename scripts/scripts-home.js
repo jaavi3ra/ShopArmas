@@ -65,7 +65,7 @@ function statRow(label, value) {
 
 function crearCardProducto(product) {
     return `
-        <article class="product-card" data-category="${product.category}">
+        <article class="product-card" data-category="${product.category}" data-product-id="${product.id}">
             <span class="product-badge">${product.badge}</span>
             <button class="favorite-btn" aria-label="Agregar ${product.name} a favoritos" title="Favorito">♡</button>
             <a class="product-image" href="?page=product&id=${product.id}" data-product-id="${product.id}" aria-label="Ver ${product.name}">
