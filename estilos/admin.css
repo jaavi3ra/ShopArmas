@@ -206,6 +206,7 @@ body {
     flex-direction: column;
     gap: 8px;
 }
+
 .admin-menu a.admin-logout {
     color: var(--danger, #ff4d5d);
     border-color: rgba(255, 77, 93, .25);
@@ -216,4 +217,32 @@ body {
     color: white;
     border-color: var(--danger, #ff4d5d);
     background: rgba(255, 77, 93, .18);
+}
+
+.admin-producto-acciones {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.admin-producto-acciones button {
+    flex: 1;
+    padding: 9px;
+    border: 1px solid var(--border, rgba(255, 255, 255, .11));
+    color: white;
+    background: #101016;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.admin-producto-acciones button:hover {
+    background: rgba(255, 255, 255, .08);
+}
+
+.btn-eliminar-producto {
+    border-color: #8b2d2d !important;
+}
+
+.btn-eliminar-producto:hover {
+    background: #8b2d2d !important;
 }
