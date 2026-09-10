@@ -4,6 +4,15 @@ function inyectarFooter() {
 }
 
 function inyectarHeader() {
+    const usuario =
+        JSON.parse(localStorage.getItem("usuarioActual") );
+    let textoUsuario = "LOGIN";
+
+    if (usuario) {
+
+        textoUsuario ="👤 " + usuario.nombre.toUpperCase();
+    }
+
     document.getElementById("header").innerHTML =
         '<section>' +
             '<a class="brand" id="btn-home" href="#">GROVE MARKET</a>' +
@@ -12,6 +21,7 @@ function inyectarHeader() {
             '<a class="active" id="btn-shop" href="#">SHOP</a>' +
             '<a href="#DROPS">DROPS</a>' +
             '<a href="#ABOUT">ABOUT</a>' +
+            '<a href="#Login" id="btn-login"> ' + textoUsuario + ' </a>' +
         '</section>' +
         '<div class="header-actions">' +
             '<div class="balance-box">' +
@@ -46,12 +56,15 @@ function cargarContenido(pagina, tipoPagina) {
             if (tipoPagina === "product") renderProductPage();
             if (tipoPagina === "cart") renderCart();
             if (tipoPagina === "checkout") renderCheckout();
+            if (tipoPagina === "login") iniciarAuth();
+
         })
         .catch(error => {
             console.error("Error cargando contenido:", error);
         });
 }
 
+//cargar paginas dentro de index.html 
 function cambiarRuta(url) {
     history.pushState(null, "", url);
 }
@@ -81,10 +94,15 @@ function cargarCheckout(actualizarRuta = true) {
     cargarContenido("paginas/checkout.html", "checkout");
 }
 
+function cargarLogin(actualizarRuta = true) {
+    if (actualizarRuta) cambiarRuta("index.html");
+    cargarContenido("paginas/login.html", "login");
+}
 function iniciarEventosHeader() {
     const btnHome = document.getElementById("btn-home");
     const btnShop = document.getElementById("btn-shop");
     const btnCarrito = document.getElementById("btn-carrito");
+    const btnLogin = document.getElementById("btn-login");
 
     btnHome.addEventListener("click", function(event) {
         event.preventDefault();
@@ -99,6 +117,11 @@ function iniciarEventosHeader() {
     btnCarrito.addEventListener("click", function(event) {
         event.preventDefault();
         cargarCarrito();
+    });
+
+    btnLogin.addEventListener("click", function(event) {
+        event.preventDefault();
+        cargarLogin();
     });
 }
 
@@ -124,11 +147,13 @@ function cargarPaginaInicial() {
     cargarHome(false);
 }
 
+
 document.addEventListener("DOMContentLoaded", function() {
     inyectarHeader();
     inyectarFooter();
     iniciarEventosHeader();
     actualizarContador();
     cargarPaginaInicial();
+   
 });
 

@@ -1,0 +1,190 @@
+<div class="auth-page">
+
+    <section class="auth-container">
+
+        <div class="auth-header">
+
+            <span class="eyebrow">GROVE MARKET ACCESO</span>
+
+            <h1 id="auth-title">
+                INICIAR SESIÓN
+            </h1>
+
+            <p>
+                Accede a tu cuenta para administrar tu stash.
+            </p>
+
+        </div>
+
+
+        <!-- BOTONES LOGIN / REGISTRO -->
+
+        <div class="auth-tabs">
+
+            <button
+                id="tab-login"
+                class="auth-tab active"
+                type="button"
+            >
+                LOGIN
+            </button>
+
+            <button
+                id="tab-register"
+                class="auth-tab"
+                type="button"
+            >
+                REGISTRO
+            </button>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <form id="login-form" class="auth-form" novalidate>
+
+            <div class="input-group">
+
+                <label for="login-email">
+                    CORREO
+                </label>
+
+                <input type="email"
+                    id="login-email"
+                    placeholder="usuario@email.com"
+                    autocomplete="email"
+                    required>
+
+                <span class="input-error" id="login-email-error" ></span>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="login-password">
+                    CONTRASEÑA
+                </label>
+
+                <div class="password-box">
+
+                    <input type="password"
+                        id="login-password"
+                        placeholder="Tu contraseña"
+                        autocomplete="current-password"
+                        required >
+
+                    <button type="button" class="show-password" data-target="login-password" > 👁 </button>
+
+                </div>
+
+                <span class="input-error" id="login-password-error" ></span>
+
+            </div>
+
+
+            <button type="submit" class="auth-submit">
+                ENTRAR
+            </button>
+
+
+            <div id="login-message" class="auth-message" ></div>
+
+        </form>
+
+
+        <!-- REGISTRO -->
+
+        <form id="register-form" class="auth-form hidden" novalidate >
+
+            <div class="input-group">
+
+                <label for="register-name">
+                    NOMBRE
+                </label>
+
+                <input type="text"
+                    id="register-name"
+                    placeholder="Carl Johnson"
+                    autocomplete="name"
+                    required >
+
+                <span class="input-error" id="register-name-error" ></span>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="register-email">
+                    CORREO
+                </label>
+
+                <input type="email"
+                    id="register-email"
+                    placeholder="usuario@email.com"
+                    autocomplete="email"
+                    required>
+
+                <span class="input-error" id="register-email-error" ></span>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="register-password">
+                    CONTRASEÑA
+                </label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="register-password"
+                        placeholder="Mínimo 8 caracteres"
+                        autocomplete="new-password"
+                        required >
+
+                    <button type="button" class="show-password" data-target="register-password" > 👁
+                    </button>
+
+                </div>
+
+                <span  class="input-error" id="register-password-error" ></span>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="register-password-confirm">
+                    REPETIR CONTRASEÑA
+                </label>
+
+                <input
+                    type="password"
+                    id="register-password-confirm"
+                    placeholder="Repite tu contraseña"
+                    autocomplete="new-password"
+                    required
+                >
+
+                <span class="input-error" id="register-confirm-error" ></span>
+
+            </div>
+
+
+            <button type="submit" class="auth-submit" >
+                CREAR CUENTA
+            </button>
+
+
+            <div id="register-message" class="auth-message" ></div>
+
+        </form>
+
+    </section>
+
+</div>
